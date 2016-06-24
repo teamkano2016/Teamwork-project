@@ -7,7 +7,7 @@
 
         double DefencePoints { get; set; }
 
-        int Lives { get; }
+        int Lives { get; set; }
 
         double HealthPoints { get; set; }
 

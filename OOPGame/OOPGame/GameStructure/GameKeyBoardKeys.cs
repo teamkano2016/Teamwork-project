@@ -5,7 +5,8 @@ using System.Text;
 
 namespace OOPGame
 {
-    public interface IAttackable
+    public enum GameKeyBoardKeys
     {
+
     }
 }

@@ -32,9 +32,10 @@
   <Class Name="OOPGame.Weapon" Collapsed="true">
     <Position X="6.25" Y="3" Width="1.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAABAIAAAgAAAAAAAAAAAAAAACGAAAAAAABAAAE=</HashCode>
       <FileName>Items\Weapon.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="OOPGame.Gun" Collapsed="true">
     <Position X="5.25" Y="4" Width="1.25" />
@@ -74,9 +75,10 @@
   <Struct Name="OOPGame.Field" Collapsed="true">
     <Position X="9.5" Y="0.75" Width="1.25" />
     <TypeIdentifier>
-      <HashCode>AAAAQAABAAAAAAAAAgAAAAAAAAAAAAAAABAAAAAAAIA=</HashCode>
+      <HashCode>AAAAQAABAAACAAAAAgAAAAAAAAAAAAAAABAAAAAABIA=</HashCode>
       <FileName>GameStructure\Field.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Struct>
   <Interface Name="OOPGame.IHero" Collapsed="true">
     <Position X="11" Y="1.5" Width="1.25" />

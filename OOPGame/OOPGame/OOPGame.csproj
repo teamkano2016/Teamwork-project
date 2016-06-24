@@ -43,32 +43,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameItems\Armor.cs" />
-    <Compile Include="GameItems\Bomb.cs" />
-    <Compile Include="Players\Enemies\Boss.cs" />
-    <Compile Include="GameAbstracts\Enemy.cs" />
-    <Compile Include="Players\Enemies\Enemy1.cs" />
+    <Compile Include="GameInterfaces\IDrawable.cs" />
+    <Compile Include="Items\Armor.cs" />
+    <Compile Include="Items\Bomb.cs" />
+    <Compile Include="Items\Bullet.cs" />
+    <Compile Include="Players\Boss.cs" />
+    <Compile Include="Players\Enemy.cs" />
+    <Compile Include="Players\Enemy1.cs" />
     <Compile Include="GameStructure\Field.cs" />
-    <Compile Include="GameStructure\GameKeyBoardKeysType.cs" />
-    <Compile Include="GameItems\Gun.cs" />
-    <Compile Include="GameItems\Health.cs" />
-    <Compile Include="GameAbstracts\Hero.cs" />
+    <Compile Include="GameStructure\GameKeyBoardKeys.cs" />
+    <Compile Include="Items\Gun.cs" />
+    <Compile Include="Health.cs" />
+    <Compile Include="Players\Hero.cs" />
     <Compile Include="GameInterfaces\IAttackable.cs" />
     <Compile Include="GameInterfaces\ICollectable.cs" />
     <Compile Include="GameInterfaces\IEnemy.cs" />
     <Compile Include="GameInterfaces\IHero.cs" />
-    <Compile Include="GameAbstracts\Items.cs" />
+    <Compile Include="Items\Items.cs" />
     <Compile Include="GameInterfaces\ITransformable.cs" />
     <Compile Include="GameStructure\LevelType.cs" />
-    <Compile Include="Players\Heroes\Player.cs" />
-    <Compile Include="Players\Heroes\Player1.cs" />
-    <Compile Include="GameItems\Potion.cs" />
+    <Compile Include="Players\Player.cs" />
+    <Compile Include="Players\Player1.cs" />
+    <Compile Include="Items\Potion.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameStructure\ScoreBoard.cs" />
-    <Compile Include="GameItems\SpecialWeapon.cs" />
-    <Compile Include="GameItems\Teleport.cs" />
-    <Compile Include="GameAbstracts\Weapon.cs" />
+    <Compile Include="Items\SpecialWeapon.cs" />
+    <Compile Include="Teleport.cs" />
+    <Compile Include="Items\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OOPGame
 {
-    public interface IAttackable
+    public class Gun : Weapon
     {
     }
 }
