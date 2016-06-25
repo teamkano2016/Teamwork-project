@@ -8,7 +8,7 @@ namespace OOPGame
     {
         // Fields.
         private string bulletFigure = ".";
-        private ConsoleColor bulletColor = ConsoleColor.DarkBlue;
+        private ConsoleColor bulletColor = ConsoleColor.Cyan;
 
         // Constructor.
         public Bullet(int row, int col)

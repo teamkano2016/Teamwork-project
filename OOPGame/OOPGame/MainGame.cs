@@ -26,9 +26,10 @@ namespace OOPGame
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(scoreBoard.ToString());
 
-            
+
             // Create Player.
             Player mainPlayer = new Player();
+
             // Create random Enemies. Creation is similar to players and items.
             // TO DO - class Enemy must be derived from interface IGameObject????
 
@@ -52,14 +53,20 @@ namespace OOPGame
                 mainPlayer.Weapon.Move(userInput);
                 gameEngine.Draw(mainPlayer);
                 gameEngine.Draw(mainPlayer.Weapon);
-                //// Important bullets are not moving automatically???
+
+                // The bullets are now moving but the player cannot move, until the bullet reaches the end of the field.
                 foreach (var bullet in mainPlayer.Weapon.Bullets)
                 {
+                    while (bullet.Col < Constants.windowWidth - 1)
+                    {
+                        gameEngine.Clear(bullet);
+                        bullet.Move();
+                        gameEngine.Clear(bullet);
+                        gameEngine.Draw(bullet);
+                        Thread.Sleep(50);
+                    }
                     gameEngine.Clear(bullet);
-                    bullet.Move();
-                    gameEngine.Draw(bullet);
                 }
-                Thread.Sleep(100);
             }
         }
     }
