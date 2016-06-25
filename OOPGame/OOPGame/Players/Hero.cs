@@ -1,4 +1,6 @@
 ﻿using OOPGame.GameInterfaces;
+using OOPGame.GameObject;
+using OOPGame.GameStructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +8,11 @@ using System.Text;
 
 namespace OOPGame
 {
-    public abstract class Hero : IDrawable //IHero, ITransformable, ICollectable, IAttackable
+    public abstract class Hero : IGameObject //IHero, ITransformable, ICollectable, IAttackable
     {
-        // Fiedls.
+        // Fields.
         private int lives;
-        private int playerRow = 3;
+        private int playerRow = Constants.screenUpperBorder;
         private int playerCol;
         private string playerFigure = "Q";
         private ConsoleColor playerColor = ConsoleColor.DarkYellow;
@@ -22,7 +24,7 @@ namespace OOPGame
         {
             this.Lives = lives;
             this.Weapon = weapon;
-            PrintOnPosition(playerRow, playerCol, playerFigure, playerColor);
+            // PrintOnPosition(playerRow, playerCol, playerFigure, playerColor);
         }
 
         // Properties.
@@ -78,6 +80,14 @@ namespace OOPGame
             }
         }
 
+        public int Row { get { return this.playerRow; } }
+
+        public int Col { get { return this.playerCol; } }
+
+        public string Figure { get { return this.playerFigure; } }
+
+        public ConsoleColor Color { get { return this.playerColor; } }
+
         // Methods.
         public void AddLive()
         {
@@ -93,43 +103,31 @@ namespace OOPGame
         {
             this.Lives--;
         }
+
         public void Move(ConsoleKeyInfo userInput)
         {
-            while (Console.KeyAvailable)
-            {
-                Console.ReadKey(true);
-            }
-            if (userInput.Key.Equals(ConsoleKey.LeftArrow) && playerCol > 0)
-            {
-                playerCol--;
-            }
-            else if (userInput.Key == ConsoleKey.RightArrow && playerCol < Field.windowWidth - 2)
-            {
-                playerCol++;
-            }
-            else if (userInput.Key == ConsoleKey.UpArrow && playerRow > Field.screenUpperBorder)
-            {
-                playerRow--;
-            }
-            else if (userInput.Key == ConsoleKey.DownArrow && playerRow < Field.windowHeight - 2)
-            {
-                playerRow++;
-            }
+                while (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                }
+                if (userInput.Key.Equals(ConsoleKey.LeftArrow) && playerCol > 0)
+                {
+                    playerCol--;
+                }
+                else if (userInput.Key == ConsoleKey.RightArrow && playerCol < Constants.windowWidth - 3)
+                {
+                    playerCol++;
+                }
+                else if (userInput.Key == ConsoleKey.UpArrow && playerRow > Constants.screenUpperBorder)
+                {
+                    playerRow--;
+                }
+                else if (userInput.Key == ConsoleKey.DownArrow && playerRow < Constants.windowHeight - 2)
+                {
+                    playerRow++;
+                }
         }
-        public void Draw()
-        {
-            PrintOnPosition(playerRow, playerCol, playerFigure, playerColor);
-        }
-        public void Clear()
-        {
-            PrintOnPosition(playerRow, playerCol, " ", playerColor);
-        }
-        public void PrintOnPosition(int row, int col, string figure, ConsoleColor color)
-        {
-            Console.SetCursorPosition(col, row);
-            Console.ForegroundColor = color;
-            Console.WriteLine(figure);
-        }
+
         //public void ResetDirections()
         //{
         //    throw new NotImplementedException();

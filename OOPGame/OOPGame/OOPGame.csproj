@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameInterfaces\IDrawable.cs" />
+    <Compile Include="GameInterfaces\IGameObject.cs" />
+    <Compile Include="GameStructure\Constants.cs" />
+    <Compile Include="GameStructure\Engine.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Bomb.cs" />
     <Compile Include="Items\Bullet.cs" />

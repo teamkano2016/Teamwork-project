@@ -1,9 +1,10 @@
 ﻿using OOPGame.GameInterfaces;
+using OOPGame.GameObject;
 using System;
 
 namespace OOPGame
 {
-    public class Bullet : IDrawable
+    public class Bullet : IGameObject
     {
         // Fields.
         private string bulletFigure = ".";
@@ -12,32 +13,22 @@ namespace OOPGame
         // Constructor.
         public Bullet(int row, int col)
         {
-            this.BulletRow = row;
-            this.BulletCol = col;
+            this.Row = row;
+            this.Col = col;
         }
 
         // Properties.
-        public int BulletRow { get; set; }
-        public int BulletCol { get; set; }
+        public int Row { get; set; }
+        public int Col { get; set; }
+
+        public string Figure { get { return this.bulletFigure; } }
+
+        public ConsoleColor Color { get { return this.bulletColor; } }
 
         // Methods.
         public void Move()
         {
-            this.BulletCol++;
-        }
-        public void Draw()
-        {
-            PrintOnPosition(this.BulletRow, this.BulletCol, bulletFigure, bulletColor);
-        }
-        public void Clear()
-        {
-            PrintOnPosition(this.BulletRow, this.BulletCol, " ", bulletColor);
-        }
-        public void PrintOnPosition(int row, int col, string figure, ConsoleColor color)
-        {
-            Console.SetCursorPosition(col, row);
-            Console.ForegroundColor = color;
-            Console.WriteLine(figure);
+            this.Col++;
         }
     }
 }

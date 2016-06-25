@@ -1,4 +1,6 @@
 ﻿using OOPGame.GameInterfaces;
+using OOPGame.GameObject;
+using OOPGame.GameStructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +8,10 @@ using System.Text;
 
 namespace OOPGame
 {
-    public abstract class Weapon : IDrawable
+    public abstract class Weapon : IGameObject
     {
         // Fields.
-        private int weaponRow = 3;
+        private int weaponRow = Constants.screenUpperBorder;
         private int weaponCol = 1;
         private string weaponFigure = ">";
         private ConsoleColor weaponColor = ConsoleColor.DarkYellow;
@@ -18,19 +20,18 @@ namespace OOPGame
         // Constructor.
         public Weapon()
         {
-            PrintOnPosition(weaponRow, weaponCol, weaponFigure, weaponColor);
             this.bullets = new List<Bullet>();
         }
         public ICollection<Bullet> Bullets { get { return this.bullets; } set { this.bullets = value; } }
-        // Methods.
-        public void Draw()
-        {
-            PrintOnPosition(weaponRow, weaponCol, weaponFigure, weaponColor);
-        }
-        public void Clear()
-        {
-            PrintOnPosition(weaponRow, weaponCol, " ", weaponColor);
-        }
+
+        public int Row { get { return this.weaponRow; } }
+
+        public int Col { get { return this.weaponCol; } }
+
+        public string Figure { get { return this.weaponFigure; } }
+
+        public ConsoleColor Color { get { return this.weaponColor; } }
+
         public void Move(ConsoleKeyInfo userInput)
         {
             while (Console.KeyAvailable)
@@ -41,15 +42,15 @@ namespace OOPGame
             {
                 weaponCol--;
             }
-            else if (userInput.Key == ConsoleKey.RightArrow && weaponCol < Field.windowWidth - 2)
+            else if (userInput.Key == ConsoleKey.RightArrow && weaponCol < Constants.windowWidth - 2)
             {
                 weaponCol++;
             }
-            else if (userInput.Key == ConsoleKey.UpArrow && weaponRow > Field.screenUpperBorder)
+            else if (userInput.Key == ConsoleKey.UpArrow && weaponRow > Constants.screenUpperBorder)
             {
                 weaponRow--;
             }
-            else if (userInput.Key == ConsoleKey.DownArrow && weaponRow < Field.windowHeight - 2)
+            else if (userInput.Key == ConsoleKey.DownArrow && weaponRow < Constants.windowHeight - 2)
             {
                 weaponRow++;
             }
@@ -57,12 +58,6 @@ namespace OOPGame
             {
                 bullets.Add(new Bullet(this.weaponRow, this.weaponCol + 1));
             }
-        }
-        public void PrintOnPosition(int row, int col, string figure, ConsoleColor color)
-        {
-            Console.SetCursorPosition(col, row);
-            Console.ForegroundColor = color;
-            Console.WriteLine(figure);
         }
     }
 }

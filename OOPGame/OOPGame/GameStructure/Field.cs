@@ -1,4 +1,5 @@
 ﻿using OOPGame.GameInterfaces;
+using OOPGame.GameStructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,26 +7,22 @@ using System.Text;
 
 namespace OOPGame
 {
-    public struct Field : IDrawable
+    public struct Field //: IDrawable
     {
         // Fields.
-        public const int windowWidth = 110;
-        public const int windowHeight = 30;
-        public const int screenUpperBorder = 3;
-        public const string ExitPoint = "E"; 
-        
-        // Properties.
-        public int WindowWIdth { get { return windowWidth; } }
-        public int WindowHeight { get { return windowHeight; } }
+        private const int width = Constants.windowWidth;
+        private const int height = Constants.windowHeight;
+        private const int screenUpperBorder = Constants.screenUpperBorder;
+        private const string ExitPoint = Constants.ExitPoint;
 
         // Methods.
         public void InitialiseSettings()
         {
-            Console.WindowWidth = windowWidth;
-            Console.WindowHeight = windowHeight;
-            Console.BufferWidth = windowWidth;
-            Console.BufferHeight = windowHeight;
-            PrintOnPosition(screenUpperBorder, windowWidth - 1, ExitPoint, ConsoleColor.Blue);
+            Console.WindowWidth = width;
+            Console.WindowHeight = height;
+            Console.BufferWidth = width;
+            Console.BufferHeight = height;
+            PrintOnPosition(screenUpperBorder, width - 1, ExitPoint, ConsoleColor.Blue);
             Console.CursorVisible = false;
         }
         // Draw exit point of the game.

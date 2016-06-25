@@ -5,7 +5,11 @@ using System.Text;
 
 namespace OOPGame
 {
-    //public class Potion : Items
-    //{
-    //}
+    public class Potion : Items
+    {
+        public Potion() : base()
+        {
+            this.Figure = "u";
+        }
+    }
 }
