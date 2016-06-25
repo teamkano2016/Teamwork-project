@@ -35,9 +35,13 @@ namespace OOPGame
 
             // Create random potions. TO DO when new level is reached potion must be reduced.
             // TO DO - if player get potion must add new live to player's property.
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < Constants.potionsFirstLevel; i++)
             {
-                gameEngine.Draw(new Potion());
+                gameEngine.Draw(new Potion());                
+            }
+            for (int i = 0; i < Constants.enemiesFirstLevel; i++)
+            {
+                gameEngine.Draw(new Enemy1());
             }
             while (!isGameOver)
             {
@@ -63,7 +67,7 @@ namespace OOPGame
                         bullet.Move();
                         gameEngine.Clear(bullet);
                         gameEngine.Draw(bullet);
-                        Thread.Sleep(50);
+                        Thread.Sleep(30);
                     }
                     gameEngine.Clear(bullet);
                 }

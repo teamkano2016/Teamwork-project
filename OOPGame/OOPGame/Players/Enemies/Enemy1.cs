@@ -7,5 +7,9 @@ namespace OOPGame
 {
     public class Enemy1 : Enemy
     {
+        public Enemy1() : base()
+        {
+            
+        }
     }
 }

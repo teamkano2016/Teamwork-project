@@ -55,8 +55,9 @@ namespace OOPGame
                 weaponRow++;
             }
             else if (userInput.Key == ConsoleKey.Spacebar)
-            {                                    bullets.Add(new Bullet(this.weaponRow, this.weaponCol + 1));
-                
+            {
+                bullets.Add(new Bullet(this.weaponRow, this.weaponCol + 1));
+
             }
         }
     }
