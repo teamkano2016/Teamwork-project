@@ -1,6 +1,7 @@
 ﻿using OOPGame.GameInterfaces;
 using OOPGame.GameObject;
 using System;
+using OOPGame.GameStructure;
 
 namespace OOPGame
 {
@@ -30,5 +31,13 @@ namespace OOPGame
         {
             this.Col++;
         }
+
+		public void MoveBullet()
+		{
+			Engine.Clear(this);
+			this.Move();
+			Engine.Clear(this);
+			Engine.Draw(this);
+		}
     }
 }

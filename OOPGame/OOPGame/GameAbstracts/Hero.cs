@@ -1,136 +1,216 @@
-﻿using OOPGame.GameInterfaces;
-using OOPGame.GameObject;
-using OOPGame.GameStructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OOPGame
+﻿namespace OOPGame
 {
-    public abstract class Hero : IGameObject //IHero, ITransformable, ICollectable, IAttackable
-    {
-        // Fields.
-        private int lives;
-        private int playerRow = Constants.screenUpperBorder;
-        private int playerCol;
-        private string playerFigure = "Q";
-        private ConsoleColor playerColor = ConsoleColor.DarkYellow;
-        private GameKeyBoardKeys playerKeyBoardKeys;
-        private Weapon weapon = new Gun();
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text;
+	using OOPGame.GameInterfaces;
+	using OOPGame.GameObject;
+	using OOPGame.GameStructure;
 
-        // Constructor.
-        public Hero(int lives)
-        {
-            this.Lives = lives;
-            this.Weapon = weapon;
-            // PrintOnPosition(playerRow, playerCol, playerFigure, playerColor);
-        }
+	public abstract class Hero : IGameObject //IHero, ITransformable, ICollectable, IAttackable
+	{
+		// Fields.
+		private int lives;
+		private int health;
+		private int playerRow;
+		private int playerCol;
+		private string playerFigure;
+		private ConsoleColor playerColor;
+		private GameKeyBoardKeys playerKeyBoardKeys;
+		private Weapon weapon;
 
-        // Properties.
-        public Weapon Weapon { get { return this.weapon; } private set { this.weapon = value; } }
-        //public double AttackPoints
-        //{
-        //    get
-        //    {
-        //        throw new NotImplementedException();
-        //    }
+		// Constructor.
+		public Hero(int lives)
+		{
+			this.Lives = lives;
+			this.Weapon = new Gun();
+			this.Row = Constants.screenUpperBorder;
+			this.Col = 0;
+			this.Figure = "Q";
+			this.Color = ConsoleColor.DarkYellow;
+			// PrintOnPosition(playerRow, playerCol, playerFigure, playerColor);
+		}
 
-        //    set
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
+		// Properties.
+		public Weapon Weapon
+		{
+			get
+			{
+				return this.weapon;
+			}
+			private set
+			{
+				this.weapon = value;
+			}
+		}
 
-        //public double DefencePoints
-        //{
-        //    get
-        //    {
-        //        throw new NotImplementedException();
-        //    }
+		//public double AttackPoints
+		//{
+		//    get
+		//    {
+		//        throw new NotImplementedException();
+		//    }
 
-        //    set
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
+		//    set
+		//    {
+		//        throw new NotImplementedException();
+		//    }
+		//}
 
-        //public double HealthPoints
-        //{
-        //    get
-        //    {
-        //        throw new NotImplementedException();
-        //    }
+		//public double DefencePoints
+		//{
+		//    get
+		//    {
+		//        throw new NotImplementedException();
+		//    }
 
-        //    set
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
+		//    set
+		//    {
+		//        throw new NotImplementedException();
+		//    }
+		//}
 
-        public int Lives
-        {
-            get
-            {
-                return this.lives;
-            }
-            private set
-            {
-                this.lives = value;
-            }
-        }
+		public int HealthPoints
+		{
+			get
+			{
+				return this.health;
+			}
 
-        public int Row { get { return this.playerRow; } }
+			set
+			{
+				this.health = value;
+			}
+		}
 
-        public int Col { get { return this.playerCol; } }
+		public int Lives
+		{
+			get
+			{
+				return this.lives;
+			}
+			private set
+			{
+				this.lives = value;
+			}
+		}
 
-        public string Figure { get { return this.playerFigure; } }
+		public int Row
+		{
+			get
+			{
+				return this.playerRow;
+			}
+			private set
+			{
+				this.playerRow = value;
+			}
+		}
 
-        public ConsoleColor Color { get { return this.playerColor; } }
+		public int Col
+		{
+			get
+			{
+				return this.playerCol;
+			}
+			private set
+			{
+				this.playerCol = value;
+			}
+		}
 
-        // Methods.
-        public void AddLive()
-        {
-            this.Lives++;
-        }
+		public string Figure
+		{
+			get
+			{
+				return this.playerFigure;
+			}
+			private set
+			{
+				this.playerFigure = value;
+			}
+		}
 
-        //public bool IsAlive()
-        //{
-        //    throw new NotImplementedException();
-        //}
+		public ConsoleColor Color
+		{
+			get
+			{
+				return this.playerColor;
+			}
+			private set
+			{
+				this.playerColor = value;
+			}
+		}
 
-        public void RemoveLive()
-        {
-            this.Lives--;
-        }
+		// Methods.
+		public void AddLive()
+		{
+			this.Lives++;
+		}
 
-        public void Move(ConsoleKeyInfo userInput)
-        {
-            while (Console.KeyAvailable)
-            {
-                Console.ReadKey(true);
-            }
-            if (userInput.Key.Equals(ConsoleKey.LeftArrow) && playerCol > 0)
-            {
-                playerCol--;
-            }
-            else if (userInput.Key == ConsoleKey.RightArrow && playerCol < Constants.windowWidth - 3)
-            {
-                playerCol++;
-            }
-            else if (userInput.Key == ConsoleKey.UpArrow && playerRow > Constants.screenUpperBorder)
-            {
-                playerRow--;
-            }
-            else if (userInput.Key == ConsoleKey.DownArrow && playerRow < Constants.windowHeight - 2)
-            {
-                playerRow++;
-            }
-        }
+		//public bool IsAlive()
+		//{
+		//    throw new NotImplementedException();
+		//}
 
-        //public void ResetDirections()
-        //{
-        //    throw new NotImplementedException();
-        //}
-    }
+		public void RemoveLive()
+		{
+			this.Lives--;
+		}
+
+		public void Move(ConsoleKeyInfo userInput)
+		{
+			while (Console.KeyAvailable)
+			{
+				Console.ReadKey(true);
+			}
+			if (userInput.Key.Equals(ConsoleKey.LeftArrow) && playerCol > 0)
+			{
+				this.Col--;
+			}
+			else if (userInput.Key == ConsoleKey.RightArrow && playerCol < Constants.windowWidth - 3)
+			{
+				this.Col++;
+			}
+			else if (userInput.Key == ConsoleKey.UpArrow && playerRow > Constants.screenUpperBorder)
+			{
+				this.Row--;
+			}
+			else if (userInput.Key == ConsoleKey.DownArrow && playerRow < Constants.windowHeight - 2)
+			{
+				this.Row++;
+			}
+
+			// When player hits potion => lives++
+			//if ((from item in GameObjects.Items
+			//	 where item.Row == this.Row && item.Col == this.Col
+			//	 select item).ToList().Count > 0)
+			//{
+			//	this.Lives++;
+			//}
+		}
+
+		public void MovePlayer()
+		{
+			Engine.Draw(this);
+			Engine.Draw(this.Weapon);
+
+			ConsoleKeyInfo userInput = Console.ReadKey();
+
+			Engine.Clear(this);
+			Engine.Clear(this.Weapon);
+
+			this.Move(userInput);
+			this.Weapon.Move(userInput);
+			Engine.Draw(this);
+			Engine.Draw(this.Weapon);
+		}
+
+		//public void ResetDirections()
+		//{
+		//    throw new NotImplementedException();
+		//}
+	}
 }

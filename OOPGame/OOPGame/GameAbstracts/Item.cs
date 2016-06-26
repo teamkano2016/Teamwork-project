@@ -7,7 +7,7 @@ using System.Text;
 
 namespace OOPGame
 {
-    public abstract class Items : IGameObject //ICollectable, ITransformable
+    public abstract class Item : IGameObject //ICollectable, ITransformable
     {
         // Fields 
         private static Random randomCoordinate = new Random();
@@ -15,7 +15,7 @@ namespace OOPGame
         private int itemCol = randomCoordinate.Next(0, Constants.windowWidth - 2);
         private string itemFigure = "t";
         private ConsoleColor itemColor = ConsoleColor.Red;
-        public Items()
+        public Item()
         {
             //this.Row = itemRow;
             //this.Col = itemCol;

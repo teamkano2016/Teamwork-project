@@ -1,13 +1,13 @@
-﻿using OOPGame.GameInterfaces;
-using OOPGame.GameStructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OOPGame
+﻿namespace OOPGame
 {
-    public struct Field //: IDrawable
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text;
+	using OOPGame.GameInterfaces;
+	using OOPGame.GameStructure;
+
+	public struct Field //: IDrawable
     {
         // Fields.
         private const int width = Constants.windowWidth;
@@ -15,9 +15,24 @@ namespace OOPGame
         private const int screenUpperBorder = Constants.screenUpperBorder;
         private const string ExitPoint = Constants.ExitPoint;
 
-        // Methods.
-        public void InitialiseSettings()
+		public Field(ScoreBoard scoreBoard)
+		{
+			this.Scores = scoreBoard;
+		}
+
+		public ScoreBoard Scores { get; set; }
+
+		// Methods.
+		private void InitializeScoreBoard()
+		{
+			Console.SetCursorPosition(0, 0);
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine(this.Scores.ToString());
+		}
+
+		public void InitialiseSettings()
         {
+			InitializeScoreBoard();
             Console.WindowWidth = width;
             Console.WindowHeight = height;
             Console.BufferWidth = width;

@@ -45,12 +45,13 @@
   <ItemGroup>
     <Compile Include="GameAbstracts\Enemy.cs" />
     <Compile Include="GameAbstracts\Hero.cs" />
-    <Compile Include="GameAbstracts\Items.cs" />
+    <Compile Include="GameAbstracts\Item.cs" />
     <Compile Include="GameAbstracts\Weapon.cs" />
     <Compile Include="GameInterfaces\IDrawable.cs" />
     <Compile Include="GameInterfaces\IGameObject.cs" />
     <Compile Include="GameStructure\Constants.cs" />
     <Compile Include="GameStructure\Engine.cs" />
+    <Compile Include="GameStructure\GameObjects.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Bomb.cs" />
     <Compile Include="Items\Bullet.cs" />

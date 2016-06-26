@@ -1,77 +1,77 @@
-﻿using OOPGame.GameStructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace OOPGame
+﻿namespace OOPGame
 {
-    class MainGame
-    {
-        static void Main()
-        {
-            bool isGameOver = false;
-            // Create Game field.
-            Field gameField = new Field();
-            gameField.InitialiseSettings();
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using OOPGame.GameStructure;
 
-            // Create Game Engine - use for drawing and clearing objects from game field.
-            Engine gameEngine = new Engine();
+	class MainGame
+	{
+		static void Main()
+		{
+			bool isGameOver = false;
 
-            // TO DO optimize score board to be set in Field.
-            ScoreBoard scoreBoard = new ScoreBoard();
-            Console.SetCursorPosition(0, 0);
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(scoreBoard.ToString());
+			// Create Player.
+			Player mainPlayer = new Player();
 
+			ScoreBoard scoreBoard = new ScoreBoard(mainPlayer.Lives, mainPlayer.HealthPoints, 0, 0);
 
-            // Create Player.
-            Player mainPlayer = new Player();
+			// Create Game field.
+			Field gameField = new Field(scoreBoard);
+			gameField.InitialiseSettings();
 
-            // Create random Enemies. Creation is similar to players and items.
-            // TO DO - class Enemy must be derived from interface IGameObject????
+			GenerateEnemiesPotions();
 
-            // Create random potions. TO DO when new level is reached potion must be reduced.
-            // TO DO - if player get potion must add new live to player's property.
-            for (int i = 0; i < Constants.potionsFirstLevel; i++)
-            {
-                gameEngine.Draw(new Potion());                
-            }
-            for (int i = 0; i < Constants.enemiesFirstLevel; i++)
-            {
-                gameEngine.Draw(new Enemy1());
-            }
-            while (!isGameOver)
-            {
-                gameEngine.Draw(mainPlayer);
-                gameEngine.Draw(mainPlayer.Weapon);
+			while (!isGameOver)
+			{
+				mainPlayer.MovePlayer();
 
-                ConsoleKeyInfo userInput = Console.ReadKey();
+				for(int i = 0; i < mainPlayer.Weapon.Bullets.Count; i++)
+				{
+					while (mainPlayer.Weapon.Bullets[i].Col < Constants.windowWidth - 1)
+					{
+						mainPlayer.Weapon.Bullets[i].MoveBullet();
 
-                gameEngine.Clear(mainPlayer);
-                gameEngine.Clear(mainPlayer.Weapon);
+						DateTime timeoutValue = DateTime.Now.AddMilliseconds(30);
 
-                mainPlayer.Move(userInput);
-                mainPlayer.Weapon.Move(userInput);
-                gameEngine.Draw(mainPlayer);
-                gameEngine.Draw(mainPlayer.Weapon);
+						while (DateTime.Now < timeoutValue)
+						{
+							// TODO: Fire bullet with spacebar immediately
+							if (Console.KeyAvailable)
+							{
+								mainPlayer.MovePlayer();
+							}
+							else
+							{
+								Thread.Sleep(30);
+							}
+						}
+					}
+					Engine.Clear(mainPlayer.Weapon.Bullets[i]);
+				}
+			}
+		}
 
-                // The bullets are now moving but the player cannot move, until the bullet reaches the end of the field.
-                foreach (var bullet in mainPlayer.Weapon.Bullets)
-                {
-                    while (bullet.Col < Constants.windowWidth - 1)
-                    {
-                        gameEngine.Clear(bullet);
-                        bullet.Move();
-                        gameEngine.Clear(bullet);
-                        gameEngine.Draw(bullet);
-                        Thread.Sleep(30);
-                    }
-                    gameEngine.Clear(bullet);
-                }
-            }
-        }
-    }
+		public static void GenerateEnemiesPotions()
+		{
+			// Create random Enemies. Creation is similar to players and items.
+			// TO DO - class Enemy must be derived from interface IGameObject????
+
+			// Create random potions. TO DO when new level is reached potion must be reduced.
+			// TO DO - if player get potion must add new live to player's property.
+			for (int i = 0; i < Constants.potionsFirstLevel; i++)
+			{
+				Engine.Draw(new Potion());
+				// TODO: Add this item to GameObjects
+			}
+			for (int i = 0; i < Constants.enemiesFirstLevel; i++)
+			{
+				Engine.Draw(new Enemy1());
+				// TODO: Add this enemy to GameObjects
+			}
+		}
+	}
 }
