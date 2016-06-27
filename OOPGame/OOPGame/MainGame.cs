@@ -27,9 +27,9 @@
 
 			while (!isGameOver)
 			{
-				mainPlayer.MovePlayer();
+				mainPlayer.MovePlayer(gameField);
 
-				for(int i = 0; i < mainPlayer.Weapon.Bullets.Count; i++)
+				for (int i = 0; i < mainPlayer.Weapon.Bullets.Count; i++)
 				{
 					while (mainPlayer.Weapon.Bullets[i].Col < Constants.windowWidth - 1)
 					{
@@ -42,7 +42,7 @@
 							// TODO: Fire bullet with spacebar immediately
 							if (Console.KeyAvailable)
 							{
-								mainPlayer.MovePlayer();
+								mainPlayer.MovePlayer(gameField);
 							}
 							else
 							{
@@ -59,18 +59,17 @@
 		{
 			// Create random Enemies. Creation is similar to players and items.
 			// TO DO - class Enemy must be derived from interface IGameObject????
-
-			// Create random potions. TO DO when new level is reached potion must be reduced.
-			// TO DO - if player get potion must add new live to player's property.
 			for (int i = 0; i < Constants.potionsFirstLevel; i++)
 			{
-				Engine.Draw(new Potion());
-				// TODO: Add this item to GameObjects
+				var potion = new Potion();
+				Engine.Draw(potion);
+				GameObjects.Potions.Add(potion);
 			}
 			for (int i = 0; i < Constants.enemiesFirstLevel; i++)
 			{
-				Engine.Draw(new Enemy1());
-				// TODO: Add this enemy to GameObjects
+				var enemy = new Enemy1();
+				Engine.Draw(enemy);
+				GameObjects.Enemies.Add(enemy);
 			}
 		}
 	}

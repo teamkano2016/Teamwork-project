@@ -182,17 +182,9 @@
 			{
 				this.Row++;
 			}
-
-			// When player hits potion => lives++
-			//if ((from item in GameObjects.Items
-			//	 where item.Row == this.Row && item.Col == this.Col
-			//	 select item).ToList().Count > 0)
-			//{
-			//	this.Lives++;
-			//}
 		}
 
-		public void MovePlayer()
+		public void MovePlayer(Field field)
 		{
 			Engine.Draw(this);
 			Engine.Draw(this.Weapon);
@@ -206,6 +198,17 @@
 			this.Weapon.Move(userInput);
 			Engine.Draw(this);
 			Engine.Draw(this.Weapon);
+
+			// When player hits potion => lives++
+			if ((from potion in GameObjects.Potions
+				 where potion.Row == this.Row && potion.Col == this.Col
+				 select potion).ToList().Count > 0)
+			{
+				GameObjects.Potions.RemoveAll(potion => potion.Row == this.Row && potion.Col == this.Col);
+				this.Lives++;
+				field.UpdateScoreBoard(this.Lives, this.HealthPoints, field.Scores.Points, field.Scores.Items);
+				field.InitializeScoreBoard();
+			}
 		}
 
 		//public void ResetDirections()

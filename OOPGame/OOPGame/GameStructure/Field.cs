@@ -23,7 +23,7 @@
 		public ScoreBoard Scores { get; set; }
 
 		// Methods.
-		private void InitializeScoreBoard()
+		public void InitializeScoreBoard()
 		{
 			Console.SetCursorPosition(0, 0);
 			Console.ForegroundColor = ConsoleColor.Blue;
@@ -40,6 +40,15 @@
             PrintOnPosition(screenUpperBorder, width - 1, ExitPoint, ConsoleColor.Blue);
             Console.CursorVisible = false;
         }
+
+		public void UpdateScoreBoard(int lives, int health, int points, int items)
+		{
+			this.Scores.Lives = lives;
+			this.Scores.Health = health;
+			this.Scores.Points = points;
+			this.Scores.Items = items;
+		}
+
         // Draw exit point of the game.
         public void PrintOnPosition(int row, int col, string text, ConsoleColor color)
         {

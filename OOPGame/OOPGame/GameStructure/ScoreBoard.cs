@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OOPGame
+﻿namespace OOPGame
 {
-    public class ScoreBoard
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text;
+
+	public class ScoreBoard
     {
         public ScoreBoard(int lives, int health, int points, int items)
         {

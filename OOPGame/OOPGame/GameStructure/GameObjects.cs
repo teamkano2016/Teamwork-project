@@ -10,8 +10,14 @@
 
 	public static class GameObjects
 	{
+		static GameObjects()
+		{
+			Enemies = new List<Enemy>();
+			Potions = new List<Potion>();
+		}
+
 		public static List<Enemy> Enemies { get; set; }
 
-		public static List<Item> Items { get; set; }
+		public static List<Potion> Potions { get; set; }
 	}
 }
