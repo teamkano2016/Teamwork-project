@@ -43,6 +43,7 @@
 							if (Console.KeyAvailable)
 							{
 								mainPlayer.MovePlayer(gameField);
+								//Teleport.TeleportPlayer(mainPlayer);//TO DO make teleporter respond to hotkey t -or any other :)
 							}
 							else
 							{

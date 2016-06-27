@@ -150,10 +150,14 @@
 			this.Lives++;
 		}
 
-		//public bool IsAlive()
-		//{
-		//    throw new NotImplementedException();
-		//}
+		public bool IsAlive()
+		{
+			if (this.lives < 0)
+			{
+				return true;
+			}
+			else { return false; }
+		}
 
 		public void RemoveLive()
 		{
