@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace OOPGame.GameStructure
 {
-   public class Constants
-    {
-        public const int windowWidth = 110;
-        public const int windowHeight = 30;
-        public const int screenUpperBorder = 3;
-        public const int potionsFirstLevel = 5;
-        public const int enemiesFirstLevel = 6;
-        public const string ExitPoint = "E";
-    }
+	public static class Constants
+	{
+		public const int WindowWidth = 110;
+		public const int WindowHeight = 33;
+		public const int ScreenUpperBorder = 1;
+		public const int PotionsFirstLevel = 5;
+		public const int EnemiesFirstLevel = 6;
+		public const string UpBorder = "_";
+		public const string DownBorder = "-";
+		public const string LeftBorder = "|";
+		public const ConsoleColor BorderColor = ConsoleColor.DarkGreen;
+		public const int InitialNumberOfLives = 5;
+	}
 }

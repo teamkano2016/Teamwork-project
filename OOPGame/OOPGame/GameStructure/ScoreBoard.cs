@@ -4,32 +4,38 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
+	using GameStructure;
 
-	public class ScoreBoard
-    {
-        public ScoreBoard(int lives, int health, int points, int items)
-        {
-            this.Lives = lives;
-			this.Health = health;
-            this.Points = points;
-            this.Items = items;
-        }
+	public static class ScoreBoard
+	{
+		static ScoreBoard()
+		{
+			Lives = Constants.InitialNumberOfLives;
+			Health = 100;
+			Points = 0;
+		}
 
-        public int Lives {get;  set; }
+		public static int Lives { get; set; }
 
-		public int Health { get; set; }
+		public static int Health { get; set; }
 
-		public int Points { get; set; }
+		public static int Points { get; set; }
 
-        public int Items { get; set; }
+		public static void InitializeScoreBoard()
+		{
+			Console.SetCursorPosition(0, 0);
+			Console.ForegroundColor = ConsoleColor.DarkCyan;
+			Console.WriteLine(string.Format("Lives: {0} | Health: {1} | Points: {2}"
+								  , Lives
+								  , Health
+								  , Points));
+		}
 
-        public override string ToString()
-        {
-            return string.Format("Lives: {0} Health: {1} Points: {2} Items: {3}"
-                                  , this.Lives
-								  , this.Health
-                                  , this.Points
-                                  , this.Items);
-        }
-    }
+		public static void UpdateScoreBoard(int lives, int health, int points)
+		{
+			Lives = lives;
+			Health = health;
+			Points = points;
+		}
+	}
 }

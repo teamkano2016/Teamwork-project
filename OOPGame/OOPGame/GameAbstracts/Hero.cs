@@ -24,11 +24,12 @@
 		public Hero(int lives)
 		{
 			this.Lives = lives;
+			this.Health = 100;
 			this.Weapon = new Gun();
-			this.Row = Constants.screenUpperBorder;
-			this.Col = 0;
+			this.Row = Constants.ScreenUpperBorder + 1;
+			this.Col = 1;
 			this.Figure = "Q";
-			this.Color = ConsoleColor.DarkYellow;
+			this.Color = ConsoleColor.Yellow;
 			// PrintOnPosition(playerRow, playerCol, playerFigure, playerColor);
 		}
 
@@ -71,7 +72,7 @@
 		//    }
 		//}
 
-		public int HealthPoints
+		public int Health
 		{
 			get
 			{
@@ -102,7 +103,7 @@
 			{
 				return this.playerRow;
 			}
-			private set
+			set
 			{
 				this.playerRow = value;
 			}
@@ -114,7 +115,7 @@
 			{
 				return this.playerCol;
 			}
-			private set
+			set
 			{
 				this.playerCol = value;
 			}
@@ -152,11 +153,14 @@
 
 		public bool IsAlive()
 		{
-			if (this.lives < 0)
+			if (this.Lives > 0)
 			{
 				return true;
 			}
-			else { return false; }
+			else
+			{
+				return false;
+			}
 		}
 
 		public void RemoveLive()
@@ -164,44 +168,41 @@
 			this.Lives--;
 		}
 
-		public void Move(ConsoleKeyInfo userInput)
+		public void Move(ConsoleKey userInput)
 		{
-			while (Console.KeyAvailable)
-			{
-				Console.ReadKey(true);
-			}
-			if (userInput.Key.Equals(ConsoleKey.LeftArrow) && playerCol > 0)
+			if (userInput == ConsoleKey.LeftArrow && this.Col > 1)
 			{
 				this.Col--;
 			}
-			else if (userInput.Key == ConsoleKey.RightArrow && playerCol < Constants.windowWidth - 3)
+			else if (userInput == ConsoleKey.RightArrow && this.Col < Constants.WindowWidth - 3)
 			{
 				this.Col++;
 			}
-			else if (userInput.Key == ConsoleKey.UpArrow && playerRow > Constants.screenUpperBorder)
+			else if (userInput == ConsoleKey.UpArrow && this.Row > Constants.ScreenUpperBorder + 1)
 			{
 				this.Row--;
 			}
-			else if (userInput.Key == ConsoleKey.DownArrow && playerRow < Constants.windowHeight - 2)
+			else if (userInput == ConsoleKey.DownArrow && this.Row < Constants.WindowHeight - 5)
 			{
 				this.Row++;
 			}
 		}
 
-		public void MovePlayer(Field field)
+		public void DrawPlayer()
 		{
 			Engine.Draw(this);
 			Engine.Draw(this.Weapon);
+		}
 
-			ConsoleKeyInfo userInput = Console.ReadKey();
-
+		public void MovePlayer(ConsoleKey userInput)
+		{
 			Engine.Clear(this);
 			Engine.Clear(this.Weapon);
 
 			this.Move(userInput);
 			this.Weapon.Move(userInput);
-			Engine.Draw(this);
-			Engine.Draw(this.Weapon);
+
+			DrawPlayer();
 
 			// When player hits potion => lives++
 			if ((from potion in GameObjects.Potions
@@ -210,8 +211,8 @@
 			{
 				GameObjects.Potions.RemoveAll(potion => potion.Row == this.Row && potion.Col == this.Col);
 				this.Lives++;
-				field.UpdateScoreBoard(this.Lives, this.HealthPoints, field.Scores.Points, field.Scores.Items);
-				field.InitializeScoreBoard();
+				ScoreBoard.UpdateScoreBoard(this.Lives, this.Health, ScoreBoard.Points);
+				ScoreBoard.InitializeScoreBoard();
 			}
 		}
 

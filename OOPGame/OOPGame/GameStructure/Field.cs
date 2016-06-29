@@ -7,54 +7,50 @@
 	using OOPGame.GameInterfaces;
 	using OOPGame.GameStructure;
 
-	public struct Field //: IDrawable
-    {
-        // Fields.
-        private const int width = Constants.windowWidth;
-        private const int height = Constants.windowHeight;
-        private const int screenUpperBorder = Constants.screenUpperBorder;
-        private const string ExitPoint = Constants.ExitPoint;
-
-		public Field(ScoreBoard scoreBoard)
-		{
-			this.Scores = scoreBoard;
-		}
-
-		public ScoreBoard Scores { get; set; }
+	public static class Field //: IDrawable
+	{
+		// Fields.
+		private const int width = Constants.WindowWidth;
+		private const int height = Constants.WindowHeight;
+		private const int screenUpperBorder = Constants.ScreenUpperBorder;
 
 		// Methods.
-		public void InitializeScoreBoard()
+		public static void InitialiseSettings()
 		{
-			Console.SetCursorPosition(0, 0);
-			Console.ForegroundColor = ConsoleColor.Blue;
-			Console.WriteLine(this.Scores.ToString());
+			Console.CursorVisible = false;
+			Console.WindowWidth = width;
+			Console.WindowHeight = height;
+			Console.BufferWidth = width;
+			Console.BufferHeight = height;
+
+			// Print field borders
+			for (int row = 1; row < height - 3; row++)
+			{
+				for (int col = 0; col < width; col++)
+				{
+					if (row == 1)
+					{
+						Engine.PrintOnPosition(row, col, Constants.UpBorder, Constants.BorderColor);
+					}
+					else if (col == 0)
+					{
+						Engine.PrintOnPosition(row, col, Constants.LeftBorder, Constants.BorderColor);
+					}
+					else if (row == height - 4)
+					{
+						Engine.PrintOnPosition(row, col, Constants.DownBorder, Constants.BorderColor);
+					}
+				}
+			}
 		}
 
-		public void InitialiseSettings()
-        {
-			InitializeScoreBoard();
-            Console.WindowWidth = width;
-            Console.WindowHeight = height;
-            Console.BufferWidth = width;
-            Console.BufferHeight = height;
-            PrintOnPosition(screenUpperBorder, width - 1, ExitPoint, ConsoleColor.Blue);
-            Console.CursorVisible = false;
-        }
-
-		public void UpdateScoreBoard(int lives, int health, int points, int items)
+		public static void UpdateField()
 		{
-			this.Scores.Lives = lives;
-			this.Scores.Health = health;
-			this.Scores.Points = points;
-			this.Scores.Items = items;
+			// Update items so bullets don't clear them
+			foreach (var potion in GameObjects.Potions)
+			{
+				Engine.Draw(potion);
+			}
 		}
-
-        // Draw exit point of the game.
-        public void PrintOnPosition(int row, int col, string text, ConsoleColor color)
-        {
-            Console.SetCursorPosition(col, row);
-            Console.ForegroundColor = color;
-            Console.WriteLine(text);
-        }
-    }
+	}
 }

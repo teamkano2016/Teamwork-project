@@ -11,64 +11,44 @@
 	public abstract class Weapon : IGameObject
 	{
 		// Fields.
-		private int weaponRow = Constants.screenUpperBorder;
-		private int weaponCol = 1;
-		private string weaponFigure = ">";
-		private ConsoleColor weaponColor = ConsoleColor.DarkYellow;
-		private List<Bullet> bullets;
 
 		// Constructor.
 		public Weapon()
 		{
-			this.bullets = new List<Bullet>();
+			this.Row = Constants.ScreenUpperBorder + 1;
+			this.Col = 2;
+			this.Figure = ">";
+			this.Color = ConsoleColor.Yellow;
+			this.Bullets = new List<Bullet>();
 		}
 
-		public List<Bullet> Bullets
+		public int Row { get; set; }
+
+		public int Col { get; set; }
+
+		public string Figure { get; set; }
+
+		public ConsoleColor Color { get; set; }
+
+		public List<Bullet> Bullets { get; set; }
+
+		public void Move(ConsoleKey userInput)
 		{
-			get
+			if (userInput == ConsoleKey.LeftArrow && this.Col > 2)
 			{
-				return this.bullets;
+				this.Col--;
 			}
-			set
+			else if (userInput == ConsoleKey.RightArrow && this.Col < Constants.WindowWidth - 2)
 			{
-				this.bullets = value;
+				this.Col++;
 			}
-		}
-
-		public int Row { get { return this.weaponRow; } }
-
-		public int Col { get { return this.weaponCol; } }
-
-		public string Figure { get { return this.weaponFigure; } }
-
-		public ConsoleColor Color { get { return this.weaponColor; } }
-
-		public void Move(ConsoleKeyInfo userInput)
-		{
-			while (Console.KeyAvailable)
+			else if (userInput == ConsoleKey.UpArrow && this.Row > Constants.ScreenUpperBorder + 1)
 			{
-				Console.ReadKey(true);
+				this.Row--;
 			}
-			if (userInput.Key.Equals(ConsoleKey.LeftArrow) && weaponCol > 1)
+			else if (userInput == ConsoleKey.DownArrow && this.Row < Constants.WindowHeight - 5)
 			{
-				weaponCol--;
-			}
-			else if (userInput.Key == ConsoleKey.RightArrow && weaponCol < Constants.windowWidth - 2)
-			{
-				weaponCol++;
-			}
-			else if (userInput.Key == ConsoleKey.UpArrow && weaponRow > Constants.screenUpperBorder)
-			{
-				weaponRow--;
-			}
-			else if (userInput.Key == ConsoleKey.DownArrow && weaponRow < Constants.windowHeight - 2)
-			{
-				weaponRow++;
-			}
-			else if (userInput.Key == ConsoleKey.Spacebar)
-			{
-				bullets.Add(new Bullet(this.weaponRow, this.weaponCol + 1));
-
+				this.Row++;
 			}
 		}
 	}

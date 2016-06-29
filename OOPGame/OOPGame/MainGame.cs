@@ -12,65 +12,98 @@
 	{
 		static void Main()
 		{
-			bool isGameOver = false;
-
 			// Create Player.
 			Player mainPlayer = new Player();
 
-			ScoreBoard scoreBoard = new ScoreBoard(mainPlayer.Lives, mainPlayer.HealthPoints, 0, 0);
+			// Create Score Board
+			ScoreBoard.InitializeScoreBoard();
 
 			// Create Game field.
-			Field gameField = new Field(scoreBoard);
-			gameField.InitialiseSettings();
+			Field.InitialiseSettings();
 
+			// Generate Enemies and Potions
 			GenerateEnemiesPotions();
 
-			while (!isGameOver)
-			{
-				mainPlayer.MovePlayer(gameField);
+			// Draw main player
+			mainPlayer.DrawPlayer();
 
-				for (int i = 0; i < mainPlayer.Weapon.Bullets.Count; i++)
-				{
-					while (mainPlayer.Weapon.Bullets[i].Col < Constants.windowWidth - 1)
-					{
-						mainPlayer.Weapon.Bullets[i].MoveBullet();
-
-						DateTime timeoutValue = DateTime.Now.AddMilliseconds(30);
-
-						while (DateTime.Now < timeoutValue)
-						{
-							// TODO: Fire bullet with spacebar immediately
-							if (Console.KeyAvailable)
-							{
-								mainPlayer.MovePlayer(gameField);
-								//Teleport.TeleportPlayer(mainPlayer);//TO DO make teleporter respond to hotkey t -or any other :)
-							}
-							else
-							{
-								Thread.Sleep(30);
-							}
-						}
-					}
-					Engine.Clear(mainPlayer.Weapon.Bullets[i]);
-				}
-			}
+			// Main logic of the game
+			MainLogic(mainPlayer);
 		}
 
 		public static void GenerateEnemiesPotions()
 		{
 			// Create random Enemies. Creation is similar to players and items.
 			// TO DO - class Enemy must be derived from interface IGameObject????
-			for (int i = 0; i < Constants.potionsFirstLevel; i++)
+
+			// Added checking for randomly generating enemy/potion with row and col that already exist
+			// Not sure if condition for potions is correct because a duplicate is very unlikely to be generated
+			for (int i = 0; i < Constants.PotionsFirstLevel; i++)
 			{
 				var potion = new Potion();
+				if ((from p in GameObjects.Potions
+					 where p.Row == potion.Row && p.Col == potion.Col
+					 select p).ToList().Count > 0)
+				{
+					i--;
+					continue;
+				}
 				Engine.Draw(potion);
 				GameObjects.Potions.Add(potion);
 			}
-			for (int i = 0; i < Constants.enemiesFirstLevel; i++)
+			for (int i = 0; i < Constants.EnemiesFirstLevel; i++)
 			{
 				var enemy = new Enemy1();
+				if ((from e in GameObjects.Enemies
+					 select e.Row).ToList().Contains(enemy.Row))
+				{
+					i--;
+					continue;
+				}
 				Engine.Draw(enemy);
 				GameObjects.Enemies.Add(enemy);
+			}
+		}
+
+		public static void MainLogic(Player mainPlayer)
+		{
+			// TODO: Fix player moving after holding arrow key down
+			while (mainPlayer.IsAlive())
+			{
+				// Check for pressed key
+				if (Console.KeyAvailable)
+				{
+					ConsoleKeyInfo input = Console.ReadKey(true);
+
+					if (input.Key == ConsoleKey.UpArrow || input.Key == ConsoleKey.DownArrow || input.Key == ConsoleKey.LeftArrow || input.Key == ConsoleKey.RightArrow)
+					{
+						mainPlayer.MovePlayer(input.Key);
+					}
+					else if (input.Key == ConsoleKey.Spacebar)
+					{
+						mainPlayer.Weapon.Bullets.Add(new Bullet(mainPlayer.Row, mainPlayer.Col + 2));
+					}
+					else if (input.Key == ConsoleKey.T)
+					{
+						Teleport.TeleportPlayer(mainPlayer);
+					}
+				}
+				// Make each bullet's move
+				for (int i = 0; i < mainPlayer.Weapon.Bullets.Count; i++)
+				{
+					if (mainPlayer.Weapon.Bullets[i].Col == Constants.WindowWidth - 1) // Remove bullet from list when it reaches the end of the console
+					{
+						Engine.Clear(mainPlayer.Weapon.Bullets[i]);
+						mainPlayer.Weapon.Bullets.RemoveAt(i);
+						i--;
+						continue;
+					}
+					mainPlayer.Weapon.Bullets[i].MoveBullet();
+				}
+
+				Field.UpdateField();
+
+				Thread.Sleep(30);
 			}
 		}
 	}

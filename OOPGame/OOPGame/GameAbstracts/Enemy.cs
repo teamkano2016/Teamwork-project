@@ -9,30 +9,21 @@
 	{
 		private static Random randomCoordinate = new Random();
 
-		private int enemyRow = randomCoordinate.Next(Constants.screenUpperBorder, Constants.windowHeight - 2);
-		private int enemyCol = Constants.windowWidth - 1;//randomCoordinate.Next(0, Constants.windowWidth - 2);
-		private string enemyFigure = "@";
-		private ConsoleColor enemyColor = ConsoleColor.Magenta;
-
-		public int Row
+		public Enemy()
 		{
-			get { return this.enemyRow; }
+			this.Row = randomCoordinate.Next(Constants.ScreenUpperBorder + 1, Constants.WindowHeight - 4);
+			this.Col = Constants.WindowWidth - 1;
+			this.Figure = "@";
+			this.Color = ConsoleColor.Magenta;
 		}
 
-		public int Col
-		{
-			get { return this.enemyCol; }
-		}
+		public int Row { get; set; }
 
-		public ConsoleColor Color
-		{
-			get { return this.enemyColor; }
-		}
+		public int Col { get; set; }
 
-		public string Figure
-		{
-			get { return this.enemyFigure; }
-		}
+		public ConsoleColor Color { get; set; }
+
+		public string Figure { get; set; }
 
 		public void MoveEnemies()
 		{

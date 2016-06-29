@@ -7,56 +7,24 @@ using System.Text;
 
 namespace OOPGame
 {
-    public abstract class Item : IGameObject //ICollectable, ITransformable
-    {
-        // Fields 
-        private static Random randomCoordinate = new Random();
-        private int itemRow = randomCoordinate.Next(Constants.screenUpperBorder, Constants.windowHeight - 2);
-        private int itemCol = randomCoordinate.Next(0, Constants.windowWidth - 2);
-        private string itemFigure = "t";
-        private ConsoleColor itemColor = ConsoleColor.Red;
-        public Item()
-        {
-            //this.Row = itemRow;
-            //this.Col = itemCol;
-            //this.Figure = itemFigure;
-            //this.Color = itemColor;
-        }
-        public int Col
-        {
-            get
-            {
-                return this.itemCol;
-            }
-        }
+	public abstract class Item : IGameObject //ICollectable, ITransformable
+	{
+		private static Random randomCoordinate = new Random();
 
-        public ConsoleColor Color
-        {
-            get
-            {
-                return this.itemColor;
-            }
-        }
+		public Item()
+		{
+			this.Row = randomCoordinate.Next(Constants.ScreenUpperBorder + 1, Constants.WindowHeight - 4);
+			this.Col = randomCoordinate.Next(1, Constants.WindowWidth - 2);
+			this.Figure = "u";
+			this.Color = ConsoleColor.Red;
+		}
 
-        public string Figure
-        {
-            get
-            {
-                return this.itemFigure;
-            }
-            set
-            {
-                this.itemFigure = value;
-            }
-        }
+		public int Row { get; set; }
 
-        public int Row
-        {
-            get
-            {
-                return this.itemRow;
-            }
-        }
+		public int Col { get; set; }
 
-    }
+		public ConsoleColor Color { get; set; }
+
+		public string Figure { get; set; }
+	}
 }
