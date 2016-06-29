@@ -12,7 +12,7 @@
 		{
 			Random rand = new Random();
 			int row = rand.Next(Constants.ScreenUpperBorder + 1, Constants.WindowHeight - 5);
-			int col = rand.Next(0, Constants.WindowWidth - 2);
+			int col = rand.Next(1, Constants.WindowWidth - 2);
 			Engine.Clear(player);
 			Engine.Clear(player.Weapon);
 
