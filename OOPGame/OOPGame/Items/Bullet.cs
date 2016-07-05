@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace OOPGame
 {
-	public class Bullet : IGameObject
+	public class Bullet : IBullet
 	{
 		// Fields.
 
@@ -29,7 +29,7 @@ namespace OOPGame
 		public ConsoleColor Color { get; set; }
 
 		// Methods.
-		public virtual void Move()
+		public void Move()
 		{
 			this.Col++;
 		}

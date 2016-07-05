@@ -47,6 +47,7 @@
     <Compile Include="GameAbstracts\Hero.cs" />
     <Compile Include="GameAbstracts\Item.cs" />
     <Compile Include="GameAbstracts\Weapon.cs" />
+    <Compile Include="GameInterfaces\IBullet.cs" />
     <Compile Include="GameInterfaces\IDrawable.cs" />
     <Compile Include="GameInterfaces\IGameObject.cs" />
     <Compile Include="GameStructure\Constants.cs" />

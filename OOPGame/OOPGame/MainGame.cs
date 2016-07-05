@@ -121,6 +121,7 @@
                 }
 
                 // Add automatically shoot from each enemy.
+
                 foreach (var enemy in GameObjects.Enemies)
                 {
                     enemy.Shoot();
