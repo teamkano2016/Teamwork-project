@@ -8,11 +8,12 @@
 	using OOPGame.GameObject;
 	using OOPGame.GameStructure;
 
-	public abstract class Hero : IGameObject //IHero, ITransformable, ICollectable, IAttackable
-	{
+	public abstract class Hero : IGameObject, IAttackable //IHero, ITransformable, ICollectable, 
+    {
 		// Fields.
 		private int lives;
 		private int health;
+        private int attackPoints = 10;
 		private int playerRow;
 		private int playerCol;
 		private string playerFigure;
@@ -46,33 +47,28 @@
 			}
 		}
 
-		//public double AttackPoints
-		//{
-		//    get
-		//    {
-		//        throw new NotImplementedException();
-		//    }
+        public int AttackPoints
+        {
+            get
+            {
+                return this.attackPoints;
+            }
+        }
 
-		//    set
-		//    {
-		//        throw new NotImplementedException();
-		//    }
-		//}
+        //public double DefencePoints
+        //{
+        //    get
+        //    {
+        //        throw new NotImplementedException();
+        //    }
 
-		//public double DefencePoints
-		//{
-		//    get
-		//    {
-		//        throw new NotImplementedException();
-		//    }
+        //    set
+        //    {
+        //        throw new NotImplementedException();
+        //    }
+        //}
 
-		//    set
-		//    {
-		//        throw new NotImplementedException();
-		//    }
-		//}
-
-		public int Health
+        public int Health
 		{
 			get
 			{
@@ -166,6 +162,7 @@
 		public void RemoveLive()
 		{
 			this.Lives--;
+            this.Health = 100;
 		}
 
 		public void Move(ConsoleKey userInput)

@@ -23,26 +23,30 @@
 			Console.BufferWidth = width;
 			Console.BufferHeight = height;
 
-			// Print field borders
-			for (int row = 1; row < height - 3; row++)
-			{
-				for (int col = 0; col < width; col++)
-				{
-					if (row == 1)
-					{
-						Engine.PrintOnPosition(row, col, Constants.UpBorder, Constants.BorderColor);
-					}
-					else if (col == 0)
-					{
-						Engine.PrintOnPosition(row, col, Constants.LeftBorder, Constants.BorderColor);
-					}
-					else if (row == height - 4)
-					{
-						Engine.PrintOnPosition(row, col, Constants.DownBorder, Constants.BorderColor);
-					}
-				}
-			}
+            PrintFieldBorders();
 		}
+
+        private static void PrintFieldBorders()
+        {
+            for (int row = 1; row < height - 3; row++)
+            {
+                for (int col = 0; col < width; col++)
+                {
+                    if (row == 1)
+                    {
+                        Engine.PrintOnPosition(row, col, Constants.UpBorder, Constants.BorderColor);
+                    }
+                    else if (col == 0)
+                    {
+                        Engine.PrintOnPosition(row, col, Constants.LeftBorder, Constants.BorderColor);
+                    }
+                    else if (row == height - 4)
+                    {
+                        Engine.PrintOnPosition(row, col, Constants.DownBorder, Constants.BorderColor);
+                    }
+                }
+            }
+        }
 
 		public static void UpdateField()
 		{

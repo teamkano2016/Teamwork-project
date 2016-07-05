@@ -7,5 +7,6 @@ namespace OOPGame
 {
     public interface IAttackable
     {
+        int AttackPoints { get; }
     }
 }

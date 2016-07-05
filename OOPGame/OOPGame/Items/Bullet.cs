@@ -24,12 +24,12 @@ namespace OOPGame
 
 		public int Col { get; set; }
 
-		public string Figure { get; set; }
+		public virtual string Figure { get; protected set; }
 
 		public ConsoleColor Color { get; set; }
 
 		// Methods.
-		public void Move()
+		public virtual void Move()
 		{
 			this.Col++;
 		}
