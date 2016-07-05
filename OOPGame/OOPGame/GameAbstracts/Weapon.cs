@@ -17,7 +17,7 @@
 		{
 			this.Row = Constants.ScreenUpperBorder + 1;
 			this.Col = 2;
-			this.Figure = ">";
+			this.Figure = Constants.HeroWeapon;
 			this.Color = ConsoleColor.Yellow;
 			this.Bullets = new List<Bullet>();
 		}

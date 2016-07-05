@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using OOPGame.GameStructure;
 
 namespace OOPGame
 {
@@ -9,7 +10,7 @@ namespace OOPGame
     {
         public Potion() : base()
         {
-            this.Figure = "u";
+            this.Figure = Constants.Potion;
         }
     }
 }

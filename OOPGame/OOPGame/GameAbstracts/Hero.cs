@@ -29,7 +29,7 @@
 			this.Weapon = new Gun();
 			this.Row = Constants.ScreenUpperBorder + 1;
 			this.Col = 1;
-			this.Figure = "Q";
+			this.Figure = Constants.Hero;
 			this.Color = ConsoleColor.Yellow;
 			// PrintOnPosition(playerRow, playerCol, playerFigure, playerColor);
 		}

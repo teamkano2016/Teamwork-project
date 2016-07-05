@@ -18,5 +18,12 @@ namespace OOPGame.GameStructure
 		public const string LeftBorder = "|";
 		public const ConsoleColor BorderColor = ConsoleColor.DarkGreen;
 		public const int InitialNumberOfLives = 5;
-	}
+        public const string Potion = "u";
+        public const string Hero = "Q";
+        public const string Enemy = "@";
+        public const string HeroWeapon = ">";
+        public const string Bullet = ".";
+        public const string EnemySpecialWeapon = "=";
+
+    }
 }

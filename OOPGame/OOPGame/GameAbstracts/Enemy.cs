@@ -14,7 +14,7 @@
         {
             this.Row = randomCoordinate.Next(Constants.ScreenUpperBorder + 1, Constants.WindowHeight - 4);
             this.Col = Constants.WindowWidth - 1;
-            this.Figure = "@";
+            this.Figure = Constants.Enemy;
             this.Color = ConsoleColor.Magenta;
             this.Health = 100;
             this.BulletsEnemy = new SpecialWeapon(this.Row, this.Col - 1);
