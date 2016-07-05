@@ -15,7 +15,7 @@ namespace OOPGame
 		{
 			this.Row = row;
 			this.Col = col;
-			this.Figure = ".";
+			this.Figure = Constants.Bullet;
 			this.Color = ConsoleColor.Cyan;
 		}
 
