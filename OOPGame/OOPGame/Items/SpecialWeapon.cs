@@ -8,7 +8,6 @@ namespace OOPGame
 {
     public class SpecialWeapon : Bullet
     {
-        private const string bulletEnemyFigure = Constants.EnemySpecialWeapon;
 
         public SpecialWeapon(int row, int col) : base(row, col)
         {
@@ -22,7 +21,7 @@ namespace OOPGame
         {
             get
             {
-                return bulletEnemyFigure;
+                return Constants.EnemySpecialWeapon;
             }
         }
     }

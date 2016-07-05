@@ -11,6 +11,6 @@ namespace OOPGame.GameObject
         int Row { get;}
         int Col { get; }
         string Figure { get;}
-        ConsoleColor Color { get;}
+        ConsoleColor Color { get;}       
     }
 }
