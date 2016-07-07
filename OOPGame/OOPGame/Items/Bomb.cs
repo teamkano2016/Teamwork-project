@@ -7,5 +7,9 @@ namespace OOPGame
 {
     public class Bomb : Weapon
     {
+		public Bomb(int row, int col, string figure, ConsoleColor color) : base(row, col, figure, color)
+		{
+
+		}
     }
 }

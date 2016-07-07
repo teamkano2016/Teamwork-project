@@ -13,12 +13,12 @@
 		// Fields.
 
 		// Constructor.
-		public Weapon()
+		public Weapon(int row, int col, string figure, ConsoleColor color)
 		{
-			this.Row = Constants.ScreenUpperBorder + 1;
-			this.Col = 2;
-			this.Figure = Constants.HeroWeapon;
-			this.Color = ConsoleColor.Yellow;
+			this.Row = row;
+			this.Col = col;
+			this.Figure = figure;
+			this.Color = color;
 			this.Bullets = new List<Bullet>();
 		}
 
@@ -30,7 +30,7 @@
 
 		public ConsoleColor Color { get; set; }
 
-		public List<Bullet> Bullets { get; set; }
+		public IList<Bullet> Bullets { get; set; }
 
 		public void Move(ConsoleKey userInput)
 		{

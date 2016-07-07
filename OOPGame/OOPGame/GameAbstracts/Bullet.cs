@@ -6,17 +6,17 @@ using System.Linq;
 
 namespace OOPGame
 {
-	public class Bullet : IBullet
+	public abstract class Bullet : IBullet
 	{
 		// Fields.
 
 		// Constructor.
-		public Bullet(int row, int col)
+		public Bullet(int row, int col, string figure, ConsoleColor color)
 		{
 			this.Row = row;
 			this.Col = col;
-			this.Figure = Constants.Bullet;
-			this.Color = ConsoleColor.Cyan;
+			this.Figure = figure; //Constants.Bullet; these are for hero
+			this.Color = color; //ConsoleColor.Cyan;
 		}
 
 		// Properties.
@@ -29,15 +29,15 @@ namespace OOPGame
 		public ConsoleColor Color { get; set; }
 
 		// Methods.
-		public void Move()
+		public void Move(int leftRight)
 		{
-			this.Col++;
+			this.Col += leftRight;
 		}
 
-		public void MoveBullet()
+		public void MoveBullet(int leftRight)
 		{
 			Engine.Clear(this);
-			this.Move();
+			this.Move(leftRight);
 			Engine.Draw(this);
 		}
 	}

@@ -1,9 +1,9 @@
 ﻿using OOPGame.GameObject;
 
-namespace OOPGame.GameInterfaces
+namespace OOPGame
 {
-    interface IBullet : IGameObject
+    public interface IBullet : IGameObject
     {
-        void Move();
+        void Move(int leftRight);
     }
 }

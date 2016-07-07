@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OOPGame
+﻿namespace OOPGame
 {
-    public class Gun : Weapon
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text;
+
+	public class Gun : Weapon
     {
+		public Gun(int row, int col, string figure, ConsoleColor color) : base(row, col, figure, color)
+		{
+			
+		}
     }
 }

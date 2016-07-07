@@ -55,7 +55,9 @@
     <Compile Include="GameStructure\GameObjects.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Bomb.cs" />
-    <Compile Include="Items\Bullet.cs" />
+    <Compile Include="GameAbstracts\Bullet.cs" />
+    <Compile Include="Items\GunBullet.cs" />
+    <Compile Include="Items\SpecialWeaponBullet.cs" />
     <Compile Include="Players\Enemies\Boss.cs" />
     <Compile Include="Players\Enemies\Enemy1.cs" />
     <Compile Include="GameStructure\Field.cs" />

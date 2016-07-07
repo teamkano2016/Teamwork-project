@@ -13,24 +13,25 @@
 		// Fields.
 		private int lives;
 		private int health;
-        private int attackPoints = 10;
+        private int attackPoints;
 		private int playerRow;
 		private int playerCol;
 		private string playerFigure;
 		private ConsoleColor playerColor;
 		private GameKeyBoardKeys playerKeyBoardKeys;
 		private Weapon weapon;
-
+							  
 		// Constructor.
 		public Hero(int lives)
 		{
 			this.Lives = lives;
 			this.Health = 100;
-			this.Weapon = new Gun();
+			this.AttackPoints = 10;
 			this.Row = Constants.ScreenUpperBorder + 1;
 			this.Col = 1;
 			this.Figure = Constants.Hero;
 			this.Color = ConsoleColor.Yellow;
+			this.Weapon = new Gun(this.Row, this.Col + 1, Constants.HeroWeapon, this.Color);
 			// PrintOnPosition(playerRow, playerCol, playerFigure, playerColor);
 		}
 
@@ -53,22 +54,28 @@
             {
                 return this.attackPoints;
             }
+			set
+			{
+				this.attackPoints = value;
+			}
         }
 
-        //public double DefencePoints
-        //{
-        //    get
-        //    {
-        //        throw new NotImplementedException();
-        //    }
+		//public double DefencePoints
+		//{
+		//    get
+		//    {
+		//        throw new NotImplementedException();
+		//    }
 
-        //    set
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
+		//    set
+		//    {
+		//        throw new NotImplementedException();
+		//    }
+		//}
 
-        public int Health
+		public int Points { get; set; }
+
+		public int Health
 		{
 			get
 			{
@@ -171,7 +178,7 @@
 			{
 				this.Col--;
 			}
-			else if (userInput == ConsoleKey.RightArrow && this.Col < Constants.WindowWidth - 3)
+			else if (userInput == ConsoleKey.RightArrow && this.Col < Constants.WindowWidth - 10)
 			{
 				this.Col++;
 			}

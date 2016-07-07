@@ -17,13 +17,18 @@ namespace OOPGame.GameStructure
 		public const string DownBorder = "-";
 		public const string LeftBorder = "|";
 		public const ConsoleColor BorderColor = ConsoleColor.DarkGreen;
+		public const ConsoleColor HeroWeaponColor = ConsoleColor.Yellow;
+		public const ConsoleColor EnemyWeaponColor = ConsoleColor.Magenta;
+		public const ConsoleColor GunBulletColor = ConsoleColor.Blue;
+		public const ConsoleColor SpecialWeaponBulletColor = ConsoleColor.Blue;
 		public const int InitialNumberOfLives = 5;
         public const string Potion = "u";
         public const string Hero = "Q";
         public const string Enemy = "@";
         public const string HeroWeapon = ">";
-        public const string Bullet = ".";
-        public const string EnemySpecialWeapon = "=";
+        public const string EnemyWeapon = "<";
+		public const string HeroBullet = ".";
+        public const string EnemyBullet = "=";
 
     }
 }

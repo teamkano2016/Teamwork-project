@@ -17,7 +17,7 @@
             this.Figure = Constants.Enemy;
             this.Color = ConsoleColor.Magenta;
             this.Health = 100;
-            this.BulletsEnemy = new SpecialWeapon(this.Row, this.Col - 1);
+            this.Weapon = new SpecialWeapon(this.Row, this.Col - 1, Constants.EnemyWeapon, Constants.EnemyWeaponColor);
         }
 
         public int Row { get; set; }
@@ -28,7 +28,7 @@
 
         public string Figure { get; set; }
 
-        public SpecialWeapon BulletsEnemy { get; private set; }
+        public Weapon Weapon { get; private set; }
 
         public int Health { get; set; }
 
@@ -42,8 +42,7 @@
 
         public void Shoot()
         {
-            this.BulletsEnemy.MoveBullet();
-
+			this.Weapon.Bullets.Add(new SpecialWeaponBullet(this.Row, this.Col - 2, Constants.EnemyBullet, Constants.SpecialWeaponBulletColor));
         }
 
         public void MoveEnemies()

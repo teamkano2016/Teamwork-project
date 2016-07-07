@@ -14,7 +14,7 @@ namespace OOPGame
 		public Item()
 		{
 			this.Row = randomCoordinate.Next(Constants.ScreenUpperBorder + 1, Constants.WindowHeight - 4);
-			this.Col = randomCoordinate.Next(1, Constants.WindowWidth - 2);
+			this.Col = randomCoordinate.Next(1, Constants.WindowWidth - 3);
 			this.Figure = Constants.Potion;
 			this.Color = ConsoleColor.Red;
 		}
