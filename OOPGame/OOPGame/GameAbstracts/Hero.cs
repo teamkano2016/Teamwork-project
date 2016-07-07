@@ -178,7 +178,7 @@
 			{
 				this.Col--;
 			}
-			else if (userInput == ConsoleKey.RightArrow && this.Col < Constants.WindowWidth - 10)
+			else if (userInput == ConsoleKey.RightArrow && this.Col < Constants.WindowWidth - 3)
 			{
 				this.Col++;
 			}
