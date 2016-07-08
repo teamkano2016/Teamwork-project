@@ -7,22 +7,26 @@
 	using OOPGame.GameInterfaces;
 	using OOPGame.GameStructure;
 
-	public static class Field //: IDrawable
+	public struct Field
 	{
 		// Fields.
 		private const int width = Constants.WindowWidth;
 		private const int height = Constants.WindowHeight;
 		private const int screenUpperBorder = Constants.ScreenUpperBorder;
+        private const string exitPoint = Constants.ExitPoint;
 
-		// Methods.
-		public static void InitialiseSettings()
+        // Property
+        public string ExitPoint { get { return exitPoint; } }
+                                           
+        // Methods.
+        public static void InitialiseSettings()
 		{
 			Console.CursorVisible = false;
 			Console.WindowWidth = width;
 			Console.WindowHeight = height;
 			Console.BufferWidth = width;
 			Console.BufferHeight = height;
-
+            Engine.PrintOnPosition(height - 5, width -1, exitPoint, ConsoleColor.Blue);
             PrintFieldBorders();
 		}
 

@@ -10,7 +10,9 @@
 
 	class MainGame
 	{
-		static void Main()
+        private static bool levelPassed = false;
+
+        static void Main()
 		{
 			// Create Player.
 			Player mainPlayer = new Player();
@@ -77,13 +79,13 @@
 		public static void MainLogic(Player mainPlayer)
 		{
 			// At level 1 an enemy can shoot only one bullet at a time
-			for (int i = 0; i < GameObjects.Enemies.Count; i++)
+			foreach (var enemy in GameObjects.Enemies)
 			{
-				GameObjects.Enemies[i].Shoot();
+                enemy.Shoot();
 			}
 
 			// TODO: Fix player moving after holding arrow key down
-			while (mainPlayer.IsAlive())
+			while (mainPlayer.IsAlive() || levelPassed)
 			{
 				// Check for pressed key
 				if (Console.KeyAvailable)
@@ -99,7 +101,10 @@
 					}
 					else if (input.Key == ConsoleKey.Spacebar)
 					{
-						mainPlayer.Weapon.Bullets.Add(new GunBullet(mainPlayer.Row, mainPlayer.Col + 2, Constants.HeroBullet, Constants.GunBulletColor));
+						mainPlayer.Weapon.Bullets.Add(new GunBullet(mainPlayer.Row, 
+                                                                    mainPlayer.Col + 2, 
+                                                                    Constants.HeroBullet, 
+                                                                    Constants.GunBulletColor));
 					}
 					else if (input.Key == ConsoleKey.T)
 					{
@@ -108,64 +113,90 @@
 				}
 
 				// Add automatically shoot from each enemy.
-				for (int i = 0; i < GameObjects.Enemies.Count; i++)
+				foreach (var enemy in GameObjects.Enemies)
 				{
-					for (int e = 0; e < GameObjects.Enemies[i].Weapon.Bullets.Count; e++)
+					foreach (var bullet in enemy.Weapon.Bullets)
 					{
-						GameObjects.Enemies[i].Weapon.Bullets[e].MoveBullet(-1);
-						if (GameObjects.Enemies[i].Weapon.Bullets[e].Row == mainPlayer.Row && GameObjects.Enemies[i].Weapon.Bullets[e].Col == mainPlayer.Col + 2)
+						bullet.MoveBullet(-1);
+						if (bullet.Row == mainPlayer.Row && 
+                            bullet.Col == mainPlayer.Col + 2)
 						{
-							Engine.Clear(GameObjects.Enemies[i].Weapon.Bullets[e]);
-							GameObjects.Enemies[i].Weapon.Bullets.RemoveAt(e);
-							e--;
-							mainPlayer.Health -= GameObjects.Enemies[i].AttackPoints;
-							if (mainPlayer.Health == 0)
+							Engine.Clear(bullet);
+                            enemy.Weapon.Bullets.Remove(bullet);
+
+                            mainPlayer.Health -= enemy.AttackPoints;
+
+                            if (mainPlayer.Health == 0)
 							{
 								mainPlayer.RemoveLive();
 							}
-							GameObjects.Enemies[i].Shoot();
+							enemy.Shoot();
+                            break;
 						}
-						else if (GameObjects.Enemies[i].Weapon.Bullets[e].Col == 1)
+						else if (bullet.Col == 1)
 						{
-							Engine.Clear(GameObjects.Enemies[i].Weapon.Bullets[e]);
-							GameObjects.Enemies[i].Weapon.Bullets.RemoveAt(e);
-							e--;
-							GameObjects.Enemies[i].Shoot();
+							Engine.Clear(bullet);
+                            enemy.Weapon.Bullets.Remove(bullet);
+							enemy.Shoot();
+                            break;
 						}
 					}
 				}
 
 				// Make each bullet's move
-				for (int i = 0; i < mainPlayer.Weapon.Bullets.Count; i++)
+				foreach (var playerBullet in mainPlayer.Weapon.Bullets)
 				{
-					mainPlayer.Weapon.Bullets[i].MoveBullet(1);
-					for (int e = 0; e < GameObjects.Enemies.Count; e++)
+					playerBullet.MoveBullet(1);
+					foreach (var enemy in GameObjects.Enemies)
 					{
-						if (GameObjects.Enemies[e].Row == mainPlayer.Weapon.Bullets[i].Row && GameObjects.Enemies[i].Col == mainPlayer.Weapon.Bullets[i].Col + 2)
+						if (enemy.Row == playerBullet.Row && enemy.Col == playerBullet.Col + 2)
 						{
-							mainPlayer.Points += 10;
-							// Clear bullets of an enemy if enemy is hit
-							for (int j = 0; j < GameObjects.Enemies[e].Weapon.Bullets.Count; j++)
-							{
-								Engine.Clear(GameObjects.Enemies[e].Weapon.Bullets[j]);
-							}
-							GameObjects.Enemies.RemoveAt(e);
-							e--;
-						}
-					}
-					if (mainPlayer.Weapon.Bullets[i].Col == Constants.WindowWidth - 1) // Remove bullet from list when it reaches the end of the console
-					{
-						Engine.Clear(mainPlayer.Weapon.Bullets[i]);
-						mainPlayer.Weapon.Bullets.RemoveAt(i);
-						i--;
-						continue;
-					}
-				}
+                            enemy.Health -= mainPlayer.AttackPoints;
+                            
+                            if (enemy.Health == 0)
+                            {
+                                mainPlayer.Points += 10;
+                                GameObjects.Enemies.Remove(enemy);
+                                Engine.Clear(enemy.Weapon);
+                                Engine.Clear(enemy);
 
+                                // Clear bullets of an enemy if enemy is hit
+                                foreach (var enemyBullet in enemy.Weapon.Bullets)
+                                {
+                                    Engine.Clear(enemyBullet);
+                                }
+                            }
+                            Engine.Clear(playerBullet);
+                            mainPlayer.Weapon.Bullets.Remove(playerBullet);
+                            break;
+
+                        }
+                    }
+                    // Remove bullet from list when it reaches the end of the console
+                    if (playerBullet.Col == Constants.WindowWidth - 1 || 
+                        GameObjects.Enemies.Any(enemy => enemy.Col - 2 == playerBullet.Col)) 
+					{
+						Engine.Clear(playerBullet);
+						mainPlayer.Weapon.Bullets.Remove(playerBullet);
+						break;
+					}
+                    // Check if all enemies are killed.
+                    if (GameObjects.Enemies.Count == 0)
+                    {
+                        break;
+                    }
+				}
+                // TODO Implement logic after finishing the level???
+                if (mainPlayer.Row.CompareTo(Constants.WindowHeight - 5) == 0 &&
+                    mainPlayer.Col.CompareTo(Constants.WindowWidth - 1) == 0 &&
+                    GameObjects.Enemies.Count == 0)
+                {
+                    levelPassed = true;
+                }
 				ScoreBoard.UpdateScoreBoard(mainPlayer.Lives, mainPlayer.Health, mainPlayer.Points);
 				ScoreBoard.InitializeScoreBoard();
 				Field.UpdateField();
-				Thread.Sleep(15);
+				Thread.Sleep(30);
 			}
 		}
 	}

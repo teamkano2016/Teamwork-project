@@ -16,7 +16,7 @@
             this.Col = Constants.WindowWidth - 1;
             this.Figure = Constants.Enemy;
             this.Color = ConsoleColor.Magenta;
-            this.Health = 100;
+            this.Health = Constants.DefaultHealthPoints;
             this.Weapon = new SpecialWeapon(this.Row, this.Col - 1, Constants.EnemyWeapon, Constants.EnemyWeaponColor);
         }
 

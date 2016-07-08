@@ -3,17 +3,17 @@
     public interface IHero
     {
         // Example of methods and properties to implement.
-        double AttackPoints { get; set; }
+        int AttackPoints { get;}
 
-        double DefencePoints { get; set; }
+        //int DefencePoints { get;}
 
-        int Lives { get; set; }
+        int Lives { get;}
 
-        double HealthPoints { get; set; }
+        int Health { get;}
 
         bool IsAlive();
 
-        void ResetDirections();
+        //void ResetDirections();
 
         void AddLive();
 

@@ -29,6 +29,7 @@ namespace OOPGame.GameStructure
         public const string EnemyWeapon = "<";
 		public const string HeroBullet = ".";
         public const string EnemyBullet = "=";
-
+        public const string ExitPoint = "E";
+        public const int DefaultHealthPoints = 100;
     }
 }

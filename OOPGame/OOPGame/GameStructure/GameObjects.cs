@@ -16,8 +16,8 @@
 			Potions = new List<Potion>();
 		}
 
-		public static List<Enemy> Enemies { get; set; }
+		public static ICollection<Enemy> Enemies { get; private set; }
 
-		public static List<Potion> Potions { get; set; }
+		public static ICollection<Potion> Potions { get; private set; }
 	}
 }
