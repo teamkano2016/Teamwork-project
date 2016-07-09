@@ -1,53 +1,54 @@
-﻿namespace OOPGame
+﻿namespace OOPGame.GameAbstracts
 {
-    using System;
-    using System.Collections.Generic;
-    using OOPGame.GameObject;
-    using OOPGame.GameStructure;
+	using System;
 
-    public abstract class Enemy : IEnemy, IGameObject, IAttackable
-    {
-        private static Random randomCoordinate = new Random();
-        private const int enemyAttackPoints = 10;
+	using GameInterfaces;
+	using OOPGame.GameStructure;
+	using OOPGame.Items;
 
-        public Enemy()
-        {
-            this.Row = randomCoordinate.Next(Constants.ScreenUpperBorder + 1, Constants.WindowHeight - 4);
-            this.Col = Constants.WindowWidth - 1;
-            this.Figure = Constants.Enemy;
-            this.Color = ConsoleColor.Magenta;
-            this.Health = Constants.DefaultHealthPoints;
-            this.Weapon = new SpecialWeapon(this.Row, this.Col - 1, Constants.EnemyWeapon, Constants.EnemyWeaponColor);
-        }
+	public abstract class Enemy : IEnemy, IGameObject, IAttackable
+	{
+		private static Random randomCoordinate = new Random();
+		private const int enemyAttackPoints = 10;
 
-        public int Row { get; set; }
+		protected Enemy()
+		{
+			this.Row = randomCoordinate.Next(Constants.ScreenUpperBorder + 1, Constants.WindowHeight - 4);
+			this.Col = Constants.WindowWidth - 1;
+			this.Figure = Constants.Enemy;
+			this.Color = ConsoleColor.Magenta;
+			this.Health = Constants.DefaultHealthPoints;
+			this.Weapon = new SpecialWeapon(this.Row, this.Col - 1, Constants.EnemyWeapon, Constants.EnemyWeaponColor);
+		}
 
-        public int Col { get; set; }
+		public int Row { get; set; }
 
-        public ConsoleColor Color { get; set; }
+		public int Col { get; set; }
 
-        public string Figure { get; set; }
+		public ConsoleColor Color { get; set; }
 
-        public Weapon Weapon { get; private set; }
+		public string Figure { get; set; }
 
-        public int Health { get; set; }
+		public Weapon Weapon { get; private set; }
 
-        public int AttackPoints
-        {
-            get
-            {
-                return enemyAttackPoints;
-            }
-        }
+		public int Health { get; set; }
 
-        public void Shoot()
-        {
+		public int AttackPoints
+		{
+			get
+			{
+				return enemyAttackPoints;
+			}
+		}
+
+		public void Shoot()
+		{
 			this.Weapon.Bullets.Add(new SpecialWeaponBullet(this.Row, this.Col - 2, Constants.EnemyBullet, Constants.SpecialWeaponBulletColor));
-        }
+		}
 
-        public void MoveEnemies()
-        {
-            throw new NotImplementedException();
-        }
-    }
+		public void MoveEnemies()
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OOPGame
+﻿namespace OOPGame.GameInterfaces
 {
-    public interface IAttackable
-    {
-        int AttackPoints { get; }
-    }
+	public interface IAttackable
+	{
+		int AttackPoints { get; }
+	}
 }

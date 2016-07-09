@@ -1,11 +1,9 @@
-﻿namespace OOPGame
+﻿namespace OOPGame.GameAbstracts
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
+
 	using OOPGame.GameInterfaces;
-	using OOPGame.GameObject;
 	using OOPGame.GameStructure;
 
 	public abstract class Weapon : IGameObject
@@ -13,7 +11,7 @@
 		// Fields.
 
 		// Constructor.
-		public Weapon(int row, int col, string figure, ConsoleColor color)
+		protected Weapon(int row, int col, string figure, ConsoleColor color)
 		{
 			this.Row = row;
 			this.Col = col;

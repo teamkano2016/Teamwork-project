@@ -1,12 +1,9 @@
 ﻿namespace OOPGame.GameStructure
 {
-	using System;
 	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using OOPGame.GameStructure;
+
+	using GameAbstracts;
+	using Items;
 
 	public static class GameObjects
 	{

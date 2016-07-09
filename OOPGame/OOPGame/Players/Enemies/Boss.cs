@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OOPGame
+﻿namespace OOPGame.Players
 {
-    public class Boss : Enemy
-    {
-    }
+	using GameAbstracts;
+
+	public class Boss : Enemy
+	{
+
+	}
 }

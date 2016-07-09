@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OOPGame
+﻿namespace OOPGame.Items
 {
-    public class Bomb : Weapon
-    {
+	using System;
+
+	using GameAbstracts;
+
+	public class Bomb : Weapon
+	{
 		public Bomb(int row, int col, string figure, ConsoleColor color) : base(row, col, figure, color)
 		{
 
 		}
-    }
+	}
 }

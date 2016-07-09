@@ -1,4 +1,4 @@
-﻿namespace OOPGame
+﻿namespace OOPGame.GameInterfaces
 {
     using System.Collections.Generic;
 

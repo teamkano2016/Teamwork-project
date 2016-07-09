@@ -1,17 +1,16 @@
-﻿using OOPGame.GameInterfaces;
-using OOPGame.GameObject;
-using System;
-using OOPGame.GameStructure;
-using System.Linq;
-
-namespace OOPGame
+﻿namespace OOPGame.GameAbstracts
 {
+	using System;
+
+	using GameInterfaces;
+	using OOPGame.GameStructure;
+
 	public abstract class Bullet : IBullet
 	{
 		// Fields.
 
 		// Constructor.
-		public Bullet(int row, int col, string figure, ConsoleColor color)
+		protected Bullet(int row, int col, string figure, ConsoleColor color)
 		{
 			this.Row = row;
 			this.Col = col;

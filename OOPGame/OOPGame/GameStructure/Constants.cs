@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOPGame.GameStructure
+﻿namespace OOPGame.GameStructure
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text;
+	using System.Threading.Tasks;
+
 	public static class Constants
 	{
 		public const int WindowWidth = 110;
@@ -22,14 +22,14 @@ namespace OOPGame.GameStructure
 		public const ConsoleColor GunBulletColor = ConsoleColor.Blue;
 		public const ConsoleColor SpecialWeaponBulletColor = ConsoleColor.Blue;
 		public const int InitialNumberOfLives = 5;
-        public const string Potion = "u";
-        public const string Hero = "Q";
-        public const string Enemy = "@";
-        public const string HeroWeapon = ">";
-        public const string EnemyWeapon = "<";
+		public const string Potion = "u";
+		public const string Hero = "Q";
+		public const string Enemy = "@";
+		public const string HeroWeapon = ">";
+		public const string EnemyWeapon = "<";
 		public const string HeroBullet = ".";
-        public const string EnemyBullet = "=";
-        public const string ExitPoint = "E";
-        public const int DefaultHealthPoints = 100;
-    }
+		public const string EnemyBullet = "=";
+		public const string ExitPoint = "E";
+		public const int DefaultHealthPoints = 100;
+	}
 }

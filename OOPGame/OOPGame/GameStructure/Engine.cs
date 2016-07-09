@@ -1,12 +1,8 @@
 ﻿namespace OOPGame.GameStructure
 {
 	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
+
 	using OOPGame.GameInterfaces;
-	using OOPGame.GameObject;
 
 	public static class Engine
 	{

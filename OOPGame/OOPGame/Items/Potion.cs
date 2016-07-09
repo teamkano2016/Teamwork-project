@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using OOPGame.GameStructure;
-
-namespace OOPGame
+﻿namespace OOPGame.Items
 {
-    public class Potion : Item
-    {
-        public Potion() : base()
-        {
-            this.Figure = Constants.Potion;
-        }
-    }
+	using GameAbstracts;
+	using OOPGame.GameStructure;
+
+	public class Potion : Item
+	{
+		public Potion() : base()
+		{
+			this.Figure = Constants.Potion;
+		}
+	}
 }

@@ -1,17 +1,15 @@
-﻿using OOPGame.GameObject;
-using OOPGame.GameStructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OOPGame
+﻿namespace OOPGame.GameAbstracts
 {
+	using System;
+
+	using GameInterfaces;
+	using OOPGame.GameStructure;
+
 	public abstract class Item : IGameObject //ICollectable, ITransformable
 	{
 		private static Random randomCoordinate = new Random();
 
-		public Item()
+		protected Item()
 		{
 			this.Row = randomCoordinate.Next(Constants.ScreenUpperBorder + 1, Constants.WindowHeight - 4);
 			this.Col = randomCoordinate.Next(1, Constants.WindowWidth - 3);
