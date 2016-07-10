@@ -94,9 +94,9 @@
             }
             private set
             {
-                if (value > MaxLivesOfPlayer)
+                if (value > Constants.MaxLivesOfPlayer)
                 {
-                    throw new HeroLivesOutOfRangeException("The player cannot have more than 20 lives!");
+                    throw new HeroLivesOutOfRangeException("The player cannot have more than {0} lives!",Constants.MaxLivesOfPlayer);
                 }
                 else { this.lives = value; }
 

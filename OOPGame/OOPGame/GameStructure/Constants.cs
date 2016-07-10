@@ -31,5 +31,6 @@
 		public const string EnemyBullet = "=";
 		public const string ExitPoint = "E";
 		public const int DefaultHealthPoints = 100;
+        public const int MaxLivesOfPlayer = 20;
 	}
 }

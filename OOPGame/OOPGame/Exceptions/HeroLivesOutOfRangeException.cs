@@ -14,5 +14,8 @@
         public HeroLivesOutOfRangeException(string message, Exception innerexception):base(message, innerexception)
         {
         }
+        public HeroLivesOutOfRangeException(string format, params object[] args)
+        : base(string.Format(format, args)) {
+        }
     }
 }
