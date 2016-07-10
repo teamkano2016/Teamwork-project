@@ -51,7 +51,7 @@
 					 where p.Row == potion.Row && p.Col == potion.Col
 					 select p).ToList().Count > 0)
 				{
-					i--;
+					i--;                    
 					continue;
 				}
 				Engine.Draw(potion);
@@ -68,6 +68,7 @@
 					 select e.Row).ToList().Contains(enemy.Row))
 				{
 					i--;
+                    
 					continue;
 				}
 				Engine.Draw(enemy);
@@ -182,7 +183,7 @@
 					}
 					// Check if all enemies are killed.
 					if (GameObjects.Enemies.Count == 0)
-					{
+					{ 
 						break;
 					}
 				}
