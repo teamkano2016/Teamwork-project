@@ -1,17 +1,18 @@
 ﻿namespace OOPGame.GameStructure
 {
 	using System;
-
+    using Items;
 	public struct Field
 	{
 		// Fields.
 		private const int width = Constants.WindowWidth;
 		private const int height = Constants.WindowHeight;
 		private const int screenUpperBorder = Constants.ScreenUpperBorder;
-		private const string exitPoint = Constants.ExitPoint;
+        private static ExitPointItem exitPoint = new ExitPointItem();
+		//private const string exitPoint = Constants.ExitPoint;
 
 		// Property
-		public string ExitPoint { get { return exitPoint; } }
+		public static ExitPointItem ExitPoint { get { return exitPoint; } }
 
 		// Methods.
 		public static void InitialiseSettings()
@@ -21,7 +22,8 @@
 			Console.WindowHeight = height;
 			Console.BufferWidth = width;
 			Console.BufferHeight = height;
-			Engine.PrintOnPosition(height - 5, width - 1, exitPoint, ConsoleColor.Blue);
+            //Engine.PrintOnPosition(height - 5, width - 1, exitPoint, ConsoleColor.Blue);
+            Engine.Draw(exitPoint);
 			PrintFieldBorders();
 		}
 
@@ -54,6 +56,7 @@
 			{
 				Engine.Draw(potion);
 			}
-		}
+            Engine.Draw(exitPoint);
+        }
 	}
 }

@@ -30,6 +30,8 @@
 		public const string HeroBullet = ".";
 		public const string EnemyBullet = "=";
 		public const string ExitPoint = "E";
+        public const int ExitPointRow = WindowHeight - 5;
+        public const int ExitPointCol = WindowWidth - 1;
 		public const int DefaultHealthPoints = 100;
         public const int MaxLivesOfPlayer = 20;
 	}
